@@ -89,5 +89,27 @@ describe Dolphin do
       end
     end
     
+    describe '.store=' do
+      context 'when assigning an errant object' do
+        it 'raises an exception' do
+          expect { Dolphin.store = Hash.new }.should raise_error(Dolphin::Store::InvalidStoreException)
+        end
+      end
+      
+      context 'when assigning an instance of Dolphin::Store::Base' do
+        it 'raises an exception' do
+          expect { Dolphin.store = Dolphin::Store::Base.new }.should raise_error(Dolphin::Store::InvalidStoreException)
+        end
+      end
+      
+      context 'when assigning a subclass of Dolphin::Store::Base' do
+        it 'assigns the object' do
+          redis = Dolphin::Store::Redis.new
+          Dolphin.store = redis
+          Dolphin.store.should eq redis
+        end
+      end
+    end
+    
   end
 end

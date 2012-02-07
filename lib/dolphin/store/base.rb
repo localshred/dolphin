@@ -1,15 +1,12 @@
-require 'dolphin/store/base'
-
 module Dolphin
   module Store
-    class Redis < Base
-      def initialize
-      end
-      
+    class Base
       def enabled?(feature)
+        raise 'Not implemented'
       end
       
       def disabled?(feature)
+        raise 'Not implemented'
       end
     end
   end

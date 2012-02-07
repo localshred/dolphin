@@ -1,8 +1,8 @@
 require "dolphin/version"
 require 'dolphin/store'
-require 'dolphin/store/redis'
 
 module Dolphin
+  extend self
 
   def enable(feature)
   end
@@ -32,9 +32,10 @@ module Dolphin
   end
   
   def store=(st)
-    @store = st
+    if !st.kind_of?(Dolphin::Store::Base) or st.instance_of?(Dolphin::Store::Base)
+      raise Dolphin::Store::InvalidStoreException.new("Store of type #{st.class.name} is not supported. Please use an extended object of Dolphin::Store::Base.")
+    end
+    @store = st 
   end
-  
-  module_function :enable, :disable, :enabled?, :disabled?, :store
   
 end
