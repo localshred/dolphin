@@ -1,9 +1,12 @@
+require 'redis'
 require 'dolphin/store/base'
 
 module Dolphin
   module Store
-    class Redis < Base
-      def initialize
+    class Redis < Dolphin::Store::Base
+      
+      def initialize(opts)
+        super(::Redis.new(opts))
       end
       
       def enabled?(feature)
@@ -11,6 +14,7 @@ module Dolphin
       
       def disabled?(feature)
       end
+      
     end
   end
 end

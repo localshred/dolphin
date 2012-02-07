@@ -7,8 +7,13 @@ module Dolphin
     
     class InvalidStoreException < StandardError; end
     
-    def default(*args)
-      Dolphin::Store::Redis.new(*args)
+    DEFAULT_OPTIONS = {
+      host: 'localhost',
+      port: 6379
+    }
+    
+    def default
+      Dolphin::Store::Redis.new(DEFAULT_OPTIONS)
     end
     
   end

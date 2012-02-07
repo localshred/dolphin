@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Dolphin::Store::Base do
   
   describe 'public API' do
+    subject { described_class.new(Hash.new) }
     specify { subject.should respond_to(:enabled?) }
     specify { expect { subject.enabled?(:blah) }.to raise_error(/not implemented/i) }
     specify { subject.should respond_to(:disabled?) }
