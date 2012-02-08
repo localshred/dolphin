@@ -2,10 +2,8 @@ require 'spec_helper'
 
 describe Dolphin::Store::Redis do
   
-  
   let(:opts) { {host: 'localhost', port: 6379} }
   let(:subject) { described_class.new({host: 'localhost', port: 6379}) }
-  before(:each) { subject.source.keys('*').each{|k| subject.source.del(k) } }
   
   it_behaves_like 'a dolphin store', subject
   

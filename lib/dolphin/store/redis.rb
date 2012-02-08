@@ -5,8 +5,6 @@ module Dolphin
   module Store
     class Redis < Dolphin::Store::Base
       
-      # KEY_PATTERN = /^#{KEY_PREFIX}\:([^:]+)(\:#{CONDITIONAL_POSTFIX})?/.freeze
-      
       def initialize(opts)
         super(::Redis.new(opts))
       end
